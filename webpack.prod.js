@@ -33,7 +33,7 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      path: path.resolve(__dirname, '..', './.env.production'),
+      path: path.resolve(__dirname,'./.env.production'),
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[fullhash].css',
@@ -41,7 +41,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, '..', './dist'),
+    contentBase: path.resolve(__dirname, './dist'),
   },
   devtool: 'source-map',
 }
