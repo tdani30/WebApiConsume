@@ -20,7 +20,7 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
   
-  uiSource: "/src"
+  uiSource: "src"
   uiBuild: "$(uiSource)/dist"
 
 stages:
