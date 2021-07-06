@@ -21,7 +21,7 @@ variables:
   vmImageName: 'ubuntu-latest'
   
   uiSource: "src"
-  uiBuild: "/dist"
+  uiBuild: "dist"
 
 stages:
 - stage: Build
