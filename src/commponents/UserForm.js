@@ -181,6 +181,7 @@ const DCandidateForm = ({ classes, ...props }) => {
 }
 
 
+
 const mapStateToProps = state => ({
     dCandidateList: state.User.list
 })
