@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from "../actions/dCandidate";
+import { ACTION_TYPES } from "../ExternalConnectivity/Services";
 const initialState = {
     list: []
 }
