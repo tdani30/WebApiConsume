@@ -3,4 +3,4 @@ import { User } from "./Action";
 
 export const reducers = combineReducers({
     User
-})
+});
