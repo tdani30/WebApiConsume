@@ -1,25 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../ExternalConnectivity/Services";
-import { Grid, Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, withStyles, ButtonGroup, Button } from "@material-ui/core";
+import { Grid, Paper, TableContainer, Table, TableHead, TableRow, TableCell,ButtonGroup , TableBody, Button } from "@material-ui/core";
 import UserForm from "./UserForm";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useToasts } from "react-toast-notifications";
 
-
-
-const styles = theme => ({
-    root: {
-        "& .MuiTableCell-head": {
-            fontSize: "1.25rem"
-        }
-    },
-    paper: {
-        margin: theme.spacing(2),
-        padding: theme.spacing(2)
-    }
-})
 
 const DCandidates = ({ classes, ...props }) => {
     const [currentId, setCurrentId] = useState(0)
@@ -36,15 +23,18 @@ const DCandidates = ({ classes, ...props }) => {
             props.deleteDCandidate(id,()=>addToast("Deleted successfully", { appearance: 'info' }))
     }
     return (
-        <Paper className={classes.paper} elevation={3}>
+        <>
+        <div className="container">
+        <Paper elevation={3}>
+        <UserForm {...({ currentId, setCurrentId })} />
+        <br></br>
+        <br></br>
             <Grid container>
-                <Grid item xs={6}>
-                    <UserForm {...({ currentId, setCurrentId })} />
-                </Grid>
-                <Grid item xs={6}>
-                    <TableContainer>
-                        <Table>
-                            <TableHead className={classes.root}>
+                <Grid item xs={6}> 
+
+                    <TableContainer className="table-responsive text-nowrap">
+                        <Table className="table table-bordered">
+                            <TableHead className="table table-striped">
                                 <TableRow>
                                     <TableCell>Name</TableCell>
                                     <TableCell>Mobile</TableCell>
@@ -78,6 +68,9 @@ const DCandidates = ({ classes, ...props }) => {
                 </Grid>
             </Grid>
         </Paper>
+        </div>
+        </>
+        
     );
 }
 
@@ -90,4 +83,4 @@ const mapActionToProps = {
     deleteDCandidate: actions.Delete
 }
 
-export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(DCandidates));
+export default connect(mapStateToProps, mapActionToProps)((DCandidates));

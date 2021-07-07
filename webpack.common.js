@@ -51,7 +51,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'React boilerplate',
+      title: 'User Consumer',
       template: path.resolve(__dirname, './src/index.html'),
       filename: './index.html',
     }),

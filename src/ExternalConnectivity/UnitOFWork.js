@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:6177/api/User/"
+const baseUrl = "https://apifortest.azurewebsites.net/api/User/"
 
 
 

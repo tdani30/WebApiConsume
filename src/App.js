@@ -7,13 +7,24 @@ import UserList from './commponents/UserList';
 
 function App() {
     return (
-      <Provider store={store}>
+      <>
+      <div className="app">
+          <div className="ui grid container">
+          <div className="container">
+       <Provider store={store}>
         <ToastProvider autoDismiss={true}>
           <Container maxWidth="lg">
             <UserList />
           </Container>
         </ToastProvider>
       </Provider>
+       </div>
+
+          </div>
+          </div>
+     
+      </>
+      
     );
   }
 export default App

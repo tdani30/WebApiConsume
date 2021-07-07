@@ -4,6 +4,7 @@ import useForm from "./FormConfiguration";
 import { connect } from "react-redux";
 import * as actions from "../ExternalConnectivity/Services";
 import { useToasts } from "react-toast-notifications";
+import {initialFieldValues} from '../Common/Helper';
 
 const styles = theme => ({
     root: {
@@ -21,31 +22,26 @@ const styles = theme => ({
     }
 })
 
-const initialFieldValues = {
-    fullName: '',
-    mobile: '',
-    email: '',
-    age: '',
-    address: '',
-    username:'',
-    password:''
-}
+const UserForm = ({ classes, ...props }) => {
 
-const DCandidateForm = ({ classes, ...props }) => {
-
-    //toast msg.
     const { addToast } = useToasts()
 
-    //validate()
-    //validate({fullName:'jenny'})
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
         if ('fullName' in fieldValues)
             temp.fullName = fieldValues.fullName ? "" : "This field is required."
         if ('mobile' in fieldValues)
             temp.mobile = fieldValues.mobile ? "" : "This field is required."
-        if ('email' in fieldValues)
+        if ('username' in fieldValues)
+            temp.username = fieldValues.username ? "" : "This field is required."
+        if ('password' in fieldValues)
+            temp.password = fieldValues.password ? "" : "This field is required."
+        if ('age' in fieldValues)
+            temp.age = fieldValues.age ? "" : "This field is required."        
+        if ('email' in fieldValues){
             temp.email = (/^$|.+@.+..+/).test(fieldValues.email) ? "" : "Email is not valid."
+            temp.email = fieldValues.email ? "" : "This field is required."
+        }
         setErrors({
             ...temp
         })
@@ -62,13 +58,6 @@ const DCandidateForm = ({ classes, ...props }) => {
         handleInputChange,
         resetForm
     } = useForm(initialFieldValues, validate, props.setCurrentId)
-
-    //material-ui select
-    const inputLabel = React.useRef(null);
-    //const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        //setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -87,6 +76,7 @@ const DCandidateForm = ({ classes, ...props }) => {
         }
     }
 
+    
     useEffect(() => {
         if (props.currentId != 0) {
             setValues({
@@ -96,8 +86,11 @@ const DCandidateForm = ({ classes, ...props }) => {
         }
     }, [props.currentId])
 
+
     return (
-        <form autoComplete="off" noValidate className={classes.root} onSubmit={handleSubmit}>
+        <>
+        <div className="row">
+        <form autoComplete="off" noValidate className={classes.root}  onSubmit={handleSubmit}>
             <Grid container>
                 <Grid item xs={6}>
                     <TextField
@@ -128,6 +121,7 @@ const DCandidateForm = ({ classes, ...props }) => {
                         name="password"
                         variant="outlined"
                         label="Password"
+                        type="password"
                         value={values.password}
                         onChange={handleInputChange}
                         {...(errors.password && { error: true, helperText: errors.password })}
@@ -139,6 +133,7 @@ const DCandidateForm = ({ classes, ...props }) => {
                         name="mobile"
                         variant="outlined"
                         label="Mobile"
+                       
                         value={values.mobile}
                         onChange={handleInputChange}
                         {...(errors.mobile && { error: true, helperText: errors.mobile })}
@@ -147,8 +142,10 @@ const DCandidateForm = ({ classes, ...props }) => {
                         name="age"
                         variant="outlined"
                         label="Age"
+                        type="number"
                         value={values.age}
                         onChange={handleInputChange}
+                        {...(errors.age && { error: true, helperText: errors.age })}
                     />
                     <TextField
                         name="address"
@@ -156,14 +153,19 @@ const DCandidateForm = ({ classes, ...props }) => {
                         label="Address"
                         value={values.address}
                         onChange={handleInputChange}
+                        {...(errors.address && { error: true, helperText: errors.address })}
                     />
-                    <div>
+                   
+                </Grid>
+                <Grid item xs={7}>
+                <div className="col-sm-4">
+                    
+                    <br></br>
                         <Button
                             variant="contained"
                             color="primary"
-                            type="submit"
-                            className={classes.smMargin}
-                        >
+                            type="submit" 
+                            className={classes.smMargin}>
                             Submit
                         </Button>
                         <Button
@@ -177,6 +179,8 @@ const DCandidateForm = ({ classes, ...props }) => {
                 </Grid>
             </Grid>
         </form>
+        </div>
+       </>
     );
 }
 
@@ -191,4 +195,4 @@ const mapActionToProps = {
     updateDCandidate: actions.update
 }
 
-export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(DCandidateForm));
+export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(UserForm));
