@@ -6,21 +6,6 @@ import * as actions from "../ExternalConnectivity/Services";
 import { useToasts } from "react-toast-notifications";
 import {initialFieldValues,styles} from '../Common/Helper';
 
-// const styles = theme => ({
-//     root: {
-//         '& .MuiTextField-root': {
-//             margin: theme.spacing(1),
-//             minWidth: 230,
-//         }
-//     },
-//     formControl: {
-//         margin: theme.spacing(1),
-//         minWidth: 230,
-//     },
-//     smMargin: {
-//         margin: theme.spacing(1)
-//     }
-// })
 
 const UserForm = ({ classes, ...props }) => {
 
@@ -183,9 +168,6 @@ const UserForm = ({ classes, ...props }) => {
        </>
     );
 }
-
-
-
 const mapStateToProps = state => ({
     dCandidateList: state.User.list
 })

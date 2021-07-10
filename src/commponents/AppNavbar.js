@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { withRouter } from 'react-router-dom';
 
-import AuthenticationService from '../ExternalConnectivity/AuthenticationService';
+import {getCurrentUser,signOut} from '../ExternalConnectivity/AuthenticationService';
 
 class AppNavbar extends Component {
   constructor(props) {
@@ -21,23 +21,13 @@ class AppNavbar extends Component {
     };
   }
 
-  componentDidMount() {
-    const user = AuthenticationService.getCurrentUser();
-
+  componentDidMount() 
+  {
+    const user = getCurrentUser();
     if (user) {
-      const roles = [];
-
-      // user.authorities.forEach(authority => {
-      //   roles.push(authority.authority)
-      // });
-      // roles.push("ROLE_PM");
-      // roles.push("ROLE_ADMIN");
-      // roles.push("ROLE_ADMIN");
   
       this.setState({
         showUser: true,
-        // showPM: roles.includes("ROLE_PM") || roles.includes("ROLE_ADMIN"),
-        // showAdmin: roles.includes("ROLE_ADMIN"),
         login: true,
         username: user.username
       });
@@ -45,7 +35,7 @@ class AppNavbar extends Component {
   }
 
   signOut = () => {
-    AuthenticationService.signOut();
+    signOut();
     this.props.history.push('/Login');
     window.location.reload();
   }
@@ -58,25 +48,22 @@ class AppNavbar extends Component {
 
   render() {
     return <Navbar color="dark" dark expand="md">
-      <Nav className="mr-auto">
-        <NavLink href="/Dashboard">Dashboard</NavLink>
-        {this.state.showUser && <NavLink href="/Dashboard">Dashboard</NavLink>}
-        {/* {this.state.showPM && <NavLink href="/pm">PM</NavLink>}
-        {this.state.showAdmin && <NavLink href="/admin">Admin</NavLink>} */}
-      </Nav>
       <NavbarToggler onClick={this.toggle}/>
       <Collapse isOpen={this.state.isOpen} navbar>
         {
           this.state.login ? (
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                  <NavbarText>
-                    Signed in as: <a href="/Dashboard">{this.state.username}</a>
-                  </NavbarText>
-              </NavItem>
+              
               <NavItem>
                 <NavLink href="#" onClick={this.signOut}>SignOut</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/CallExternalService" >External Service</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/Dashboard">Signed in as: <b>{this.state.username}</b></NavLink>
+              </NavItem>
+              
             </Nav>                 
           ) : (
             <Nav className="ml-auto" navbar>

@@ -6,12 +6,10 @@ import UserForm from "./UserForm";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useToasts } from "react-toast-notifications";
-import TablePagination  from './CustomControl/Table-Pagination';
 
 
-const Header = ['Name', 'Mobile', 'Age', 'UserName'];
 
-const DCandidates = ({ classes, ...props }) => {
+const UserList = ({ classes, ...props }) => {
     const [currentId, setCurrentId] = useState(0)
 
     useEffect(() => {
@@ -36,19 +34,7 @@ const DCandidates = ({ classes, ...props }) => {
                 <Grid item xs={6}> 
 
                     <TableContainer className="table-responsive text-nowrap">
-                        {/* {(props.UserList!=null  && props.UserList.length>0) && ( 
-                            <TablePagination
-                            headers={ Header }
-                            data={ props.UserList }
-                            columns="Name.Mobile.Age.UserName"
-                            perPageItemCount={ 2 }
-                            partialPageCount={ 3 }
-                            totalCount={ props.UserList.length }
-                            arrayOption={ [['size', 'all', ' ']] }
-                            nextPageText="Next"
-                            prePageText="Prev"
-                          />
-                        )} */}
+                  
                         <Table className="table table-bordered">
                             <TableHead className="table table-striped">
                                 <TableRow>
@@ -99,4 +85,4 @@ const mapActionToProps = {
     deleteDCandidate: actions.Delete
 }
 
-export default connect(mapStateToProps, mapActionToProps)((DCandidates));
+export default connect(mapStateToProps, mapActionToProps)((UserList));

@@ -11,7 +11,7 @@ const Header = (HeaderProps) => {
         <tr>
           {
             HeaderProps.headers.map(header =>
-              <th key={ `Header-${header}` }>{ header }</th>,
+              <th className="rowFont" key={ `Header-${header}` }>{ header }</th>,
             )
           }
         </tr>

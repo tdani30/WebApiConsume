@@ -40,7 +40,7 @@ const Body = (BodyProps) => {
           }
 
           return (
-            <td key={ `col-${col}` }>
+            <td className="rowFont" key={ `col-${col}` }>
               {
                 arrPropVal || single[col]
               }

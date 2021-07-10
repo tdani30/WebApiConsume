@@ -4,12 +4,11 @@ import { ToastProvider } from "react-toast-notifications";
 import { store } from "../Redux/Store";
 import { Provider } from "react-redux";
 import UserList from './UserList';
-import AppNavbar from './AppNavbar';
 
 export default function Dashboard() {
+  
     return (
         <>
-        <AppNavbar/>
              <div className="app">
           <div className="ui grid container">
           <div className="container">

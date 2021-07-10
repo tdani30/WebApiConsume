@@ -3,17 +3,18 @@ import AppNavbar from './AppNavbar';
 import { Container } from 'reactstrap';
 import { Form, Alert, FormGroup, Label, Row, Col } from "reactstrap";
 import {Button} from 'react-bootstrap';
-import AuthenticationService from "../ExternalConnectivity/AuthenticationService";
+import {signin} from "../ExternalConnectivity/AuthenticationService";
 import { TextField} from "@material-ui/core";
 //import { useToasts } from "react-toast-notifications";
 import {initialFieldLogin} from '../Common/Helper';
 import useForm from "./FormConfiguration";
 
-const Login = () =>{
+const Login = (props) =>{
 
   //const { addToast } = useToasts()
 
   const validate = (fieldValues = values) => {
+    
       let temp = { ...errors }
       if ('username' in fieldValues)
           temp.username = fieldValues.username ? "" : "This field is required."
@@ -25,6 +26,8 @@ const Login = () =>{
 
       if (fieldValues == values)
           return Object.values(temp).every(x => x == "")
+
+          debugger;
   }
 
   const {
@@ -39,18 +42,18 @@ const Login = () =>{
     e.preventDefault()
     if (validate()) 
     {
-      AuthenticationService
-        .signin(state.username, 
-                  state.password)
+      signin(values.username, 
+          values.password)
       .then(
-        () => {
-          this.props.history.push('/Dashboard');
+        (data) => {
+          props.history.push('/Dashboard');
+          window.location.reload();
           resetForm();
-          //addToast("Submitted successfully", { appearance: 'success' })
         },
         error => {
+          debugger;
           console.log("Login fail: error = { " + error.toString() + " }");
-          this.setState({error: "Can not signin successfully ! Please check username/password again"});
+          console.log("Can not signin successfully ! Please check username/password again");
         }
     );
     }
@@ -59,7 +62,6 @@ const Login = () =>{
   return (
     <>
 <div>
-        <AppNavbar/>
         <Container fluid>
           <Row style={{marginTop:"20px"}}>
           <Col sm="12" md={{ size: 3, offset: 4 }}>
@@ -67,10 +69,10 @@ const Login = () =>{
               <FormGroup >
                 <Label for="username"><strong>Username</strong></Label>
                 <TextField className="formAlignment"
-                        name="fullName" autoFocus
+                        name="username" autoFocus
                         variant="outlined"
                         type="text"
-                        label="Username"
+                        label="username"
                         value={values.username}
                         onChange={handleInputChange}
                         {...(errors.username && { error: true, helperText: errors.username })}
@@ -81,7 +83,7 @@ const Login = () =>{
               <FormGroup>
                 <Label for="password"><strong>Password</strong></Label>
                 <TextField className="formAlignment"
-                        name="fullName" autoFocus
+                        name="password" autoFocus
                         variant="outlined"
                         type="password"
                         type="text"
