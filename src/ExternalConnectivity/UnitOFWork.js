@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://apifortest.azurewebsites.net/api/User/"
-
+const baseUrl = process.env.baseUrl
 
 
 export default {

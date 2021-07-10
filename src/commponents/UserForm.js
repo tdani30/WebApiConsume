@@ -4,23 +4,23 @@ import useForm from "./FormConfiguration";
 import { connect } from "react-redux";
 import * as actions from "../ExternalConnectivity/Services";
 import { useToasts } from "react-toast-notifications";
-import {initialFieldValues} from '../Common/Helper';
+import {initialFieldValues,styles} from '../Common/Helper';
 
-const styles = theme => ({
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            minWidth: 230,
-        }
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 230,
-    },
-    smMargin: {
-        margin: theme.spacing(1)
-    }
-})
+// const styles = theme => ({
+//     root: {
+//         '& .MuiTextField-root': {
+//             margin: theme.spacing(1),
+//             minWidth: 230,
+//         }
+//     },
+//     formControl: {
+//         margin: theme.spacing(1),
+//         minWidth: 230,
+//     },
+//     smMargin: {
+//         margin: theme.spacing(1)
+//     }
+// })
 
 const UserForm = ({ classes, ...props }) => {
 
