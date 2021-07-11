@@ -42,7 +42,7 @@ const Login = (props) =>{
           values.password)
       .then(
         (data) => {
-          props.history.push('/Dashboard');
+          props.history.push('/');
           window.location.reload();
           resetForm();
         },
