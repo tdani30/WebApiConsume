@@ -1,5 +1,4 @@
 import React from 'react';
-import AppNavbar from './AppNavbar';
 import { Form, FormGroup, Label } from "reactstrap";
 import {Button} from 'react-bootstrap';
 import {signin} from "../ExternalConnectivity/AuthenticationService";
@@ -9,7 +8,6 @@ import useForm from "./FormConfiguration";
 
 const Login = (props) =>{
 
-  //const { addToast } = useToasts()
 
   const validate = (fieldValues = values) => {
     
