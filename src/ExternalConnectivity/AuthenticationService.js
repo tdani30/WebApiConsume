@@ -4,7 +4,7 @@ const baseUrl = process.env.baseUrl
 
 
   export const  signin = (username, password) => {
-      return axios.post(`${baseUrl}/Authenticate`, {username, password})
+      return axios.post(`${baseUrl}Authenticate`, {username, password})
         .then(response => {
          
           if (response.data.data.token) {
