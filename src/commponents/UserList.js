@@ -14,7 +14,8 @@ const UserList = ({ classes, ...props }) => {
 
     useEffect(() => {
         props.fetchAllDCandidates();
-    }, [])//componentDidMount
+        
+    }, [])
     
     //toast msg.
     const { addToast } = useToasts()

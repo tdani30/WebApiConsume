@@ -5,7 +5,6 @@ import { Form, Alert, FormGroup, Label, Row, Col } from "reactstrap";
 import {Button} from 'react-bootstrap';
 import {signin} from "../ExternalConnectivity/AuthenticationService";
 import { TextField} from "@material-ui/core";
-//import { useToasts } from "react-toast-notifications";
 import {initialFieldLogin} from '../Common/Helper';
 import useForm from "./FormConfiguration";
 
