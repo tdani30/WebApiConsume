@@ -1,10 +1,9 @@
 import React from 'react';
 import AppNavbar from './AppNavbar';
-import { Container } from 'reactstrap';
-import { Form, Alert, FormGroup, Label, Row, Col } from "reactstrap";
+import { Form, FormGroup, Label } from "reactstrap";
 import {Button} from 'react-bootstrap';
 import {signin} from "../ExternalConnectivity/AuthenticationService";
-import { TextField} from "@material-ui/core";
+import { TextField,Grid} from "@material-ui/core";
 import {initialFieldLogin} from '../Common/Helper';
 import useForm from "./FormConfiguration";
 
@@ -60,11 +59,11 @@ const Login = (props) =>{
   
   return (
     <>
-<div>
-        <Container fluid>
-          <Row style={{marginTop:"20px"}}>
-          <Col sm="12" md={{ size: 3, offset: 4 }}>
-            <Form  onSubmit={handleSubmit} >
+<div >
+<Grid container>
+                <Grid item xs={6}>
+
+                <Form  onSubmit={handleSubmit} >
               <FormGroup >
                 <Label for="username"><strong>Username</strong></Label>
                 <TextField className="formAlignment"
@@ -98,9 +97,8 @@ const Login = (props) =>{
                 Sign In
               </Button>
             </Form>
-            </Col>
-          </Row>
-        </Container>
+                  </Grid>
+                  </Grid>
       </div>
     </>
   );
