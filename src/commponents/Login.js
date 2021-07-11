@@ -96,6 +96,12 @@ const Login = (props) =>{
               </Button>
             </Form>
                   </Grid>
+
+                  
+                  </Grid>
+                  <br></br>
+                  <Grid item xs={3}>
+                    <b>Username : sa   & Password: 123</b>
                   </Grid>
       </div>
     </>
